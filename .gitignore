@@ -1,2 +1,3 @@
 node_modules
-server/config
+server/config/dbInfo.js
+server/config/secret.js

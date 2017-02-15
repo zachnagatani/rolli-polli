@@ -26,4 +26,8 @@ app.post('/signup', passport.authenticate('signup'), (req, res) => {
     res.end('Success! ' + req.user);
 });
 
+app.post('/login', passport.authenticate('login'), (req, res) => {
+    res.end('Success!' + req.user);
+});
+
 app.listen(port);
