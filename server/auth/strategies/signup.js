@@ -15,6 +15,10 @@ module.exports = passport => {
                     return done(null, false, {message: 'User already exists with that email.'});
                 }
 
+                if (req.body.verify !== password) {
+                    return done(null, false, {message: 'Passwords did not match'});
+                }
+
                 // Create new user with encrypted pw
                 let newUser = User({
                     email: email,
