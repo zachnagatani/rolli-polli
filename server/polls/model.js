@@ -7,6 +7,8 @@ const mongoose = require('mongoose'),
             name: {type: String, required: true},
             votes: {type: Number, default: 0}
         }]
+      }, {
+          timestamps: true
       });
 
 module.exports = mongoose.model('Poll', pollSchema);
