@@ -9,6 +9,7 @@ const express = require('express'),
       initPassport = require('./auth/init'),
       bodyParser = require('body-parser'),
       Poll = require('./polls/model'),
+      preAuth = require('./auth/preAuth'),
       port = process.env.PORT || 8000;
 
 mongoose.connect(dbURL);
@@ -31,7 +32,7 @@ app.post('/login', passport.authenticate('login'), (req, res) => {
     res.end('Success!' + req.user);
 });
 
-app.post('/new-poll', (req, res) => {
+app.post('/new-poll', preAuth, (req, res) => {
     const newPoll = Poll({
         username: req.body.username,
         question: req.body.question,
