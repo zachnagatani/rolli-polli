@@ -1,0 +1,12 @@
+const mongoose = require('mongoose'),
+      Schema = mongoose.Schema,
+      pollSchema = new Schema({
+        username: {type: String, required: true},
+        question: {type: String, required: true},
+        options: [{
+            name: {type: String, required: true},
+            votes: {type: Number, default: 0}
+        }]
+      });
+
+module.exports = mongoose.model('Poll', pollSchema);

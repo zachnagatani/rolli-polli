@@ -8,6 +8,7 @@ const express = require('express'),
       passport = require('passport'),
       initPassport = require('./auth/init'),
       bodyParser = require('body-parser'),
+      Poll = require('./polls/model'),
       port = process.env.PORT || 8000;
 
 mongoose.connect(dbURL);
@@ -28,6 +29,23 @@ app.post('/signup', passport.authenticate('signup'), (req, res) => {
 
 app.post('/login', passport.authenticate('login'), (req, res) => {
     res.end('Success!' + req.user);
+});
+
+app.post('/new-poll', (req, res) => {
+    const newPoll = Poll({
+        username: req.body.username,
+        question: req.body.question,
+        options: req.body.options
+    });
+
+    newPoll.save(err => {
+        if (err) {
+            console.log(err);
+        }
+
+        console.log('Poll added.');
+        res.end('Poll added');
+    });
 });
 
 app.listen(port);
