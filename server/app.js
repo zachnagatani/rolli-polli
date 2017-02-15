@@ -50,7 +50,7 @@ app.post('/new-poll', /*preAuth,*/ (req, res) => {
     });
 });
 
-app.get('/polls', (req, res) => {
+app.get('/get-polls', (req, res) => {
     Poll.find({})
         .sort('-createdAt')
         .exec((err, polls) => {
@@ -71,6 +71,29 @@ app.get('/view-poll/:id', (req, res) => {
         }
 
         res.json(poll);
+    });
+});
+
+
+/** TODO: UPDATE POLL ENDPOINT FOR ADDING VOTES */
+// app.post('/update-poll/:id', (req, res) => {
+//     Poll.findByIdAndUpdate({
+//         _id: req.params.id
+//     }, {
+//         poll
+//     });
+// });
+
+app.delete('/delete-poll/:id', /*preAuth,*/ (req, res) => {
+    Poll.findByIdAndRemove({
+        _id: req.params.id
+    }, err => {
+        if (err) {
+            return console.log(err);
+        }
+
+        res.status(200);
+        res.end('Poll with id ' + req.params.id + ' deleted.');
     });
 });
 
