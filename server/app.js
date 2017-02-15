@@ -62,4 +62,16 @@ app.get('/polls', (req, res) => {
         });
 });
 
+app.get('/view-poll/:id', (req, res) => {
+    Poll.findById({
+        _id: req.params.id
+    }, (err, poll) => {
+        if (err) {
+            return console.log(err);
+        }
+
+        res.json(poll);
+    });
+});
+
 app.listen(port);
