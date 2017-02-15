@@ -1,8 +1,10 @@
-const passport = require('passport');
+const passport = require('passport'),
+      login = require('./strategies/login'),
+      signup = require('./strategies/signup');
 
 module.exports = (passport) => {
     passport.serializeUser((user, done) => {
-        done(null, user.id);
+        done(null, user._id);
     });
 
     passport.deserializeUser((id, done) => {
@@ -10,4 +12,7 @@ module.exports = (passport) => {
             done(err, user);
         });
     });
+
+    login(passport);
+    signup(passport);
 };

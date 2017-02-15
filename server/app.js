@@ -22,4 +22,8 @@ app.get('/', (req, res) => {
     res.end('HELLO BABALOO');
 });
 
+app.post('/signup', passport.authenticate('signup'), (req, res) => {
+    res.end('Success! ' + req.user);
+});
+
 app.listen(port);
