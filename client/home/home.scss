@@ -1,0 +1,13 @@
+.hero {
+    height: 300px;
+    background: $primary-color;
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+.info {
+    .container {
+        margin-top: 40px;
+    }
+}

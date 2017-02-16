@@ -1,2 +1,24 @@
 html, body {
   height: 100%; }
+
+.navbar {
+  margin-bottom: 0;
+  background: #fff;
+  border-radius: 0;
+  width: 100%; }
+
+.btn-success {
+  background: #8BC34A; }
+
+.btn {
+  border-radius: 4px; }
+
+.hero {
+  height: 300px;
+  background: #2196F3;
+  display: flex;
+  align-items: center;
+  color: #fff; }
+
+.info .container {
+  margin-top: 40px; }

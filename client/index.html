@@ -7,6 +7,9 @@
     </head>
     <body ng-controller="mainCtrl as vm">
         <span ng-include="'components/navbar.html'"></span>
+        <main>
+            <ui-view></ui-view>
+        </main>
         <script src="/node_modules/jquery/dist/jquery.js"></script>
         <script src="/node_modules/angular/angular.js"></script>
         <script src="/node_modules/angular-ui-router/release/angular-ui-router.js"></script>

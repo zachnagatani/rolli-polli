@@ -5,9 +5,9 @@
   "main": "server/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "scss": "node-sass client/main.scss client/main.css",
+    "scss": "node-sass client/main.scss client/main.css -w client/main.scss",
     "autoprefixer": "postcss -u autoprefixer client/main.css",
-    "serve": "npm run scss && browser-sync start --config bs-config.js"
+    "serve": "browser-sync start --config bs-config.js"
   },
   "repository": {
     "type": "git",

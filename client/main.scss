@@ -1,3 +1,22 @@
+@import 'variables.scss';
+
 html, body {
     height: 100%;
 }
+
+.navbar {
+    margin-bottom: 0;
+    background: #fff;
+    border-radius: 0;
+    width: 100%;
+}
+
+.btn-success {
+    background: $accent;
+}
+
+.btn {
+    border-radius: 4px;
+}
+
+@import 'home/home.scss';
