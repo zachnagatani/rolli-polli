@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "scss": "node-sass client/main.scss client/main.css",
     "autoprefixer": "postcss -u autoprefixer client/main.css",
-    "serve": "browser-sync start --server 'client'"
+    "serve": "npm run scss && browser-sync start --config bs-config.js"
   },
   "repository": {
     "type": "git",
