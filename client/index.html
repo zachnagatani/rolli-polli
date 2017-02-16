@@ -7,7 +7,7 @@
     </head>
     <body ng-controller="mainCtrl as vm">
         <span ng-include="'components/navbar.html'"></span>
-        <main>
+        <main ng-class="{signupMain: vm.location === '/signup'}">
             <ui-view></ui-view>
         </main>
         <script src="/node_modules/jquery/dist/jquery.js"></script>
@@ -15,6 +15,9 @@
         <script src="/node_modules/angular-ui-router/release/angular-ui-router.js"></script>
         <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
         <script src="app.js"></script>
+        <script src="home/home.js"></script>
+        <script src="signup/signup.js"></script>
+        <script src="login/login.js"></script>
         <script id="__bs_script__">//<![CDATA[
     document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.18.8'><\/script>".replace("HOST", location.hostname));
 //]]></script>

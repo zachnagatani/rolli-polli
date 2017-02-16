@@ -1,22 +1,32 @@
 @import 'variables.scss';
 
-html, body {
+html, body, main {
     height: 100%;
 }
 
 .navbar {
     margin-bottom: 0;
     background: #fff;
+    border: none;
     border-radius: 0;
     width: 100%;
-}
-
-.btn-success {
-    background: $accent;
 }
 
 .btn {
     border-radius: 4px;
 }
 
+.btn-success {
+    background: $accent;
+}
+
+.btn-primary {
+    background: $primary-color;
+}
+
+.btn-submit {
+    width: 100px;
+}
+
 @import 'home/home.scss';
+@import 'signup/signup.scss';

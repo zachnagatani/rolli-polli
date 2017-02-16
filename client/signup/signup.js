@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('rolliPolli')
-        .controller('homeCtrl', [function() {
+        .controller('signupCtrl', ['$location', function($location) {
             const self = this;
         }]);
 })();
