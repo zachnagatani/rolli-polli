@@ -1,4 +1,5 @@
 const passport = require('passport'),
+      User = require('./models/user'),
       login = require('./strategies/login'),
       signup = require('./strategies/signup');
 
