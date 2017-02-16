@@ -1,5 +1,7 @@
 @import 'variables.scss';
 
+// main.scss contains common styles that work on multiple pages
+
 html, body, main {
     height: 100%;
 }
@@ -28,5 +30,20 @@ html, body, main {
     width: 100px;
 }
 
+.container--background {
+    background: rgba(255, 2555, 255, 1);
+    padding: 40px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.signupMain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $accent;
+    color: $copy;
+}
+
 @import 'home/home.scss';
 @import 'signup/signup.scss';
+@import 'login/login.scss';
