@@ -19,7 +19,6 @@ app.use(session({ secret: secret() }));
 app.use(passport.initialize());
 app.use(passport.session());
 initPassport(passport);
-
 // Hello world
 app.get('/', (req, res) => {
     res.end('HELLO BABALOO');
@@ -60,6 +59,19 @@ app.get('/get-polls', (req, res) => {
 
             res.json(polls);
         });
+});
+
+app.get('/get-polls/:user', (req, res) => {
+    Poll.find({
+        username: req.params.user
+    }).sort('-createdAt')
+      .exec((err, polls) => {
+        if (err) {
+            return console.log(err);
+        }
+
+        res.json(polls);
+      });
 });
 
 app.get('/view-poll/:id', (req, res) => {
