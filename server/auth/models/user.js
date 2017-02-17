@@ -8,13 +8,12 @@ const mongoose = require('mongoose'),
       }),
       secret = require('../../config/secret');
 
-userSchema.methods.generateJwt = () => {
+userSchema.methods.generateJwt = (username, id) => {
     const expiry = new Date();
     expiry.setDate(expiry.getDate() + 7);
-
     return jwt.sign({
-        _id: this._id,
-        username: this.username,
+        _id: id,
+        username: username,
         exp: parseInt(expiry.getTime() / 1000)
     }, secret());
 };

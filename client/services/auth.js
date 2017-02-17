@@ -8,5 +8,9 @@
             self.saveToken = token => {
                 $window.localStorage['jwt'] = token;
             };
+
+            self.getToken = () => {
+                return $window.localStorage['jwt'];
+            };
         }]);
 })();

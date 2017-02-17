@@ -9,8 +9,8 @@
                 e.preventDefault();
 
                 $http.post('http://localhost:8000/login', {'withCredentials': true, 'username': username, 'password': password}).then(function success(response) {
-                    console.log(response.data);
                     auth.saveToken(response.data);
+                    $state.go('mypolls');
                 }, function error(err) {
                     console.log(err);
                 });

@@ -33,7 +33,8 @@ app.post('/signup', passport.authenticate('signup'), (req, res) => {
 });
 
 app.post('/login', passport.authenticate('login'), (req, res) => {
-    res.json(req.user.generateJwt());
+    console.log(req.user);
+    res.json(req.user.generateJwt(req.user.username, req.user._id));
 });
 
 app.post('/new-poll', /*preAuth,*/ (req, res) => {
@@ -113,9 +114,9 @@ app.delete('/delete-poll/:id', /*preAuth,*/ (req, res) => {
     });
 });
 
-app.get('/profile', /*preAuth,*/ (req, res) => {
-    console.log(req.user);
-    res.json(req.user);
+app.get('/profile', preAuth, (req, res) => {
+    console.log(req.user.username);
+    res.json(req.user.username);
 });
 
 app.listen(port);
