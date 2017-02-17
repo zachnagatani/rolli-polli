@@ -29,7 +29,8 @@ app.get('/', (req, res) => {
 });
 
 app.post('/signup', passport.authenticate('signup'), (req, res) => {
-    res.redirect('http://localhost:3000/#/home');
+    console.log(req.user);
+    res.json(req.user.generateJwt(req.user.username, req.user._id));
 });
 
 app.post('/login', passport.authenticate('login'), (req, res) => {

@@ -7,6 +7,10 @@
 
             self.get = (url, config) => {
                 return $http.get(url, config);
-            }
+            };
+
+            self.post = (url, body, config) => {
+                return $http.post(url, body, config);
+            };
         }]);
 })();
