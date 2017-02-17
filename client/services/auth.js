@@ -12,5 +12,30 @@
             self.getToken = () => {
                 return $window.localStorage['jwt'];
             };
+
+            self.isLoggedIn = () => {
+                const token = self.getToken();
+                let payload;
+
+                if (token) {
+                    payload = JSON.parse($window.atob(token.split('.')[1]));
+                    return payload.exp > Date.now() / 1000;
+                }
+
+                return false;
+            };
+
+            self.currentUser = () => {
+                if (self.isLoggedIn()) {
+                    const token = self.getToken(),
+                          payload = JSON.parse($window.atob(token.split('.')[1]));
+
+                    return {
+                        username: payload.username
+                    };
+                }
+
+                return;
+            };
         }]);
 })();

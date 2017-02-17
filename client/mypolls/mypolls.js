@@ -6,7 +6,7 @@
             const self = this,
                   token = auth.getToken();
 
-            api.get('http://localhost:8000/profile', {
+            api.get('http://localhost:8000/get-polls/' + auth.currentUser().username, {
                 headers: {
                     Authorization: 'Bearer ' + token
                 }
