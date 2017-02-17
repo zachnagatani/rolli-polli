@@ -26,7 +26,7 @@
                 controller: 'pollsCtrl as vm'
             })
             .state('view-poll', {
-                url: 'view-poll/:id',
+                url: '/view-poll/:id',
                 templateUrl: 'view-poll/view-poll.html',
                 controller: 'viewPollCtrl as vm'
             })
@@ -36,8 +36,8 @@
                 controller: 'myPollsCtrl as vm'
             });
 
-        $urlRouterProvider
-            .otherwise('/home');
+        // $urlRouterProvider
+        //     .otherwise('/home');
     }]);
 
     app.controller('mainCtrl', ['$location', function($location) {
