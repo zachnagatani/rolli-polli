@@ -2,11 +2,14 @@
     'use strict';
 
     angular.module('rolliPolli')
-        .controller('myPollsCtrl', ['api', 'auth', function(api, auth) {
+        .controller('myPollsCtrl', ['$state', 'api', 'auth', function($state, api, auth) {
             const self = this,
                   token = auth.getToken();
 
-            api.get('http://localhost:8000/get-polls/' + auth.currentUser().username, {
+            if (!token) {
+                $state.go('home');
+            }
+            api.get('http://localhost:8000/get-polls/znagatani', {
                 headers: {
                     Authorization: 'Bearer ' + token
                 }

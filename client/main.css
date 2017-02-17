@@ -42,3 +42,11 @@ html, body, main {
 
 .info .container {
   margin-top: 40px; }
+
+.list-item--poll {
+  margin-bottom: 20px !important;
+  word-wrap: break-word;
+  color: #212121; }
+
+.votes-badge {
+  margin-left: 10px; }

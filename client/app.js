@@ -20,6 +20,16 @@
                 templateUrl: 'login/login.html',
                 controller: 'loginCtrl as vm'
             })
+            .state('polls', {
+                url: '/polls',
+                templateUrl: 'polls/polls.html',
+                controller: 'pollsCtrl as vm'
+            })
+            .state('view-poll', {
+                url: 'view-poll/:id',
+                templateUrl: 'view-poll/view-poll.html',
+                controller: 'viewPollCtrl as vm'
+            })
             .state('mypolls', {
                 url: '/mypolls',
                 templateUrl: 'mypolls/mypolls.html',
