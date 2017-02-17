@@ -1,6 +1,7 @@
 const express = require('express'),
       app = express(),
       session = require('express-session'),
+      cors = require('cors'),
       mongo = require('mongodb').MongoClient,
       mongoose = require('mongoose'),
       dbURL = require('./config/dbInfo')(),
@@ -8,16 +9,19 @@ const express = require('express'),
       passport = require('passport'),
       initPassport = require('./auth/init'),
       bodyParser = require('body-parser'),
+      cookieParser = require('cookie-parser'),
       Poll = require('./polls/model'),
       preAuth = require('./auth/preAuth'),
       port = process.env.PORT || 8000;
 
 mongoose.connect(dbURL);
 
+app.use(cors());
+app.use(cookieParser());
 app.use(bodyParser());
-app.use(session({ secret: secret() }));
+// app.use(session({ secret: secret() }));
 app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.session());
 initPassport(passport);
 // Hello world
 app.get('/', (req, res) => {
@@ -25,11 +29,11 @@ app.get('/', (req, res) => {
 });
 
 app.post('/signup', passport.authenticate('signup'), (req, res) => {
-    res.end('Success! ' + req.user);
+    res.redirect('http://localhost:3000/#/home');
 });
 
 app.post('/login', passport.authenticate('login'), (req, res) => {
-    res.end('Success!' + req.user);
+    res.json(req.user.generateJwt());
 });
 
 app.post('/new-poll', /*preAuth,*/ (req, res) => {
@@ -107,6 +111,11 @@ app.delete('/delete-poll/:id', /*preAuth,*/ (req, res) => {
         res.status(200);
         res.end('Poll with id ' + req.params.id + ' deleted.');
     });
+});
+
+app.get('/profile', /*preAuth,*/ (req, res) => {
+    console.log(req.user);
+    res.json(req.user);
 });
 
 app.listen(port);

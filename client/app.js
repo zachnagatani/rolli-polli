@@ -19,6 +19,11 @@
                 url: '/login',
                 templateUrl: 'login/login.html',
                 controller: 'loginCtrl as vm'
+            })
+            .state('mypolls', {
+                url: '/mypolls',
+                templateUrl: 'mypolls/mypolls.html',
+                controller: 'myPollsCtrl as vm'
             });
 
         $urlRouterProvider
