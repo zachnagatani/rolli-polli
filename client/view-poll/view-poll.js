@@ -14,6 +14,11 @@
                 return votes;
             };
 
+            /** TODO: Don't want to manip dom here? And we are getting $apply already in progress error... */
+            self.clickRadio = id => {
+                document.getElementById(id).click();
+            };
+
             api.get('http://localhost:8000/view-poll/' + $stateParams.id).then(function(response) {
                 console.log(response.data);
                 self.poll = response.data;

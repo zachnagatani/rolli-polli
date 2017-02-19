@@ -55,3 +55,6 @@ html, body, main {
 
 .votes-badge {
   margin-left: 10px; }
+
+.row--option {
+  margin-bottom: 10px; }
