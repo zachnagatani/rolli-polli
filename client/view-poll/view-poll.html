@@ -5,14 +5,21 @@
         </div>
     </div>
 
-    <div class="row row--option" ng-repeat="option in vm.poll.options">
-        <div class="col-sm-6 col-sm-offset-3">
-            <div class="btn btn-default btn-block btn-lg radio" ng-click="vm.clickRadio(option.name)">
-                <label for="vote">
-                    <input type="radio" name="vote" id="{{option.name}}" value="{{option.name}}">
-                    {{option.name}}
-                </label>
+    <form method="POST" action="">
+        <div class="row row--option" ng-repeat="option in vm.poll.options">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="btn btn-default btn-block btn-lg radio" ng-click="vm.clickRadio(option.name)">
+                    <label for="vote">
+                        <input type="radio" name="vote" id="{{option.name}}" value="{{option.name}}">
+                        {{option.name}}
+                    </label>
+                </div>
             </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+                <input type="submit" class="btn btn-success btn-block btn-lg" value="Vote!">
+            </div>
+        </div>
+    </form>
 </div>
