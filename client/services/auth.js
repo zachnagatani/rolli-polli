@@ -13,6 +13,10 @@
                 return $window.localStorage['jwt'];
             };
 
+			self.logout = function() {
+				$window.localStorage.removeItem('mean-token');
+			};
+
             self.isLoggedIn = () => {
                 const token = self.getToken();
                 let payload;

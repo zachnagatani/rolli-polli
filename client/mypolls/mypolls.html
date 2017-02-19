@@ -1,1 +1,18 @@
-you here at da polls bruh
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 class="text-center">Open Polls</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="form-group">
+                <label for="filter">My Polls</label>
+                <input type="text" name="filter" id="filter" class="form-control">
+            </div>
+        </div>
+    </div>
+
+    <span ng-include="'../components/poll-list.html'"></span>
+</div>

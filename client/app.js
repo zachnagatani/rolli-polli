@@ -36,13 +36,11 @@
                 controller: 'myPollsCtrl as vm'
             });
 
-        // $urlRouterProvider
-        //     .otherwise('/home');
+        $urlRouterProvider
+            .otherwise('/home');
     }]);
 
-    app.controller('mainCtrl', ['$location', function($location) {
+    app.controller('mainCtrl', ['$location', 'auth', function($location, auth) {
         const self = this;
-
-        self.location = $location.path();
     }]);
 })();

@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <ul class="list-group">
+            <a ng-repeat="poll in vm.polls" ng-href="{{'#!/view-poll/' + poll._id}}">
+            <!--<a ng-repeat="poll in vm.polls" ui-sref="view-poll.id({id: poll.id })">-->
+                <li class="list-group-item list-item--poll">
+                    <span class="badge votes-badge">{{vm.calcVotes(poll)}}</span>
+                    <span>{{poll.question | limitTo: 60}}</span>
+                    <span class="pull-right votes-badge-label">Votes:</span>
+                </li>
+            </a>
+        </ul>
+    </div>
+</div>
