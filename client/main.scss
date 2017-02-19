@@ -45,6 +45,12 @@ html, body, main {
     color: $copy;
 }
 
+.pollsMain {
+    padding-top: 60px;
+    background: $primary-color;
+    color: $text;
+}
+
 @import 'home/home.scss';
 @import 'signup/signup.scss';
 @import 'login/login.scss';

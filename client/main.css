@@ -33,6 +33,11 @@ html, body, main {
   background: #8BC34A;
   color: #212121; }
 
+.pollsMain {
+  padding-top: 60px;
+  background: #2196F3;
+  color: #fff; }
+
 .hero {
   height: 300px;
   background: #2196F3;

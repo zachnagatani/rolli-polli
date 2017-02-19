@@ -45,6 +45,8 @@
 
         $rootScope.$on('$locationChangeStart', function(event, next, current) {
             self.location = $location.path();
+            console.log(self.location);
         });
     }]);
+
 })();
