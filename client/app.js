@@ -40,7 +40,11 @@
             .otherwise('/home');
     }]);
 
-    app.controller('mainCtrl', ['$location', 'auth', function($location, auth) {
+    app.controller('mainCtrl', ['$location', '$rootScope', function($location, $rootScope) {
         const self = this;
+
+        $rootScope.$on('$locationChangeStart', function(event, next, current) {
+            self.location = $location.path();
+        });
     }]);
 })();
