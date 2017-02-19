@@ -2,17 +2,10 @@
     'use strict';
 
     angular.module('rolliPolli')
-        .controller('pollsCtrl', ['api', 'auth', function(api, auth) {
+        .controller('pollsCtrl', ['api', 'auth', 'voteCalculator', function(api, auth, voteCalculator) {
             const self = this;
 
-            self.calcVotes = poll => {
-                let votes = 0;
-                poll.options.forEach(option => {
-                    votes += option.votes;
-                });
-
-                return votes;
-            };
+            self.calculateVotes = voteCalculator.calculateVotes;
 
             api.get('http://localhost:8000/get-polls').then(function(response) {
                 console.log(response.data);

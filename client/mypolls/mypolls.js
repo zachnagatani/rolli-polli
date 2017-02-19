@@ -2,9 +2,11 @@
     'use strict';
 
     angular.module('rolliPolli')
-        .controller('myPollsCtrl', ['$state', 'api', 'auth', function($state, api, auth) {
+        .controller('myPollsCtrl', ['$state', 'api', 'auth', 'voteCalculator', function($state, api, auth, voteCalculator) {
             const self = this,
                   token = auth.getToken();
+
+            self.calculateVotes = voteCalculator.calculateVotes;
 
             if (!token) {
                 $state.go('home');
@@ -14,8 +16,7 @@
                     Authorization: 'Bearer ' + token
                 }
             }).then(function(response) {
-                // self.profile = response.data;
-                console.log(response.data);
+                self.polls = response.data;
             });
         }]);
 })();
