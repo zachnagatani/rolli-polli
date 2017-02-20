@@ -34,6 +34,11 @@
                 url: '/mypolls',
                 templateUrl: 'mypolls/mypolls.html',
                 controller: 'myPollsCtrl as vm'
+            })
+            .state('new-poll', {
+                url: '/new-poll',
+                templateUrl: 'new-poll/new-poll.html',
+                controller: 'newPollCtrl as vm'
             });
 
         $urlRouterProvider
