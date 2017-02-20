@@ -14,7 +14,7 @@
             };
 
 			self.logout = function() {
-				$window.localStorage.removeItem('mean-token');
+				$window.localStorage.removeItem('jwt');
 			};
 
             self.isLoggedIn = () => {

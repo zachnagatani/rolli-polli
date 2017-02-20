@@ -10,6 +10,7 @@
 
                 api.post('http://localhost:8000/login', {'username': username, 'password': password}).then(function success(response) {
                     auth.saveToken(response.data);
+                    self.loggedIn = true;
                     $state.go('mypolls');
                 }, function error(err) {
                     console.log(err);

@@ -40,8 +40,14 @@
             .otherwise('/home');
     }]);
 
-    app.controller('mainCtrl', ['$location', '$rootScope', function($location, $rootScope) {
+    app.controller('mainCtrl', ['$location', '$rootScope', 'auth', function($location, $rootScope, auth) {
         const self = this;
+
+        self.isLoggedIn = auth.isLoggedIn();
+        self.logout = () => {
+            auth.logout();
+            self.isLoggedIn = false;
+        };
 
         $rootScope.$on('$locationChangeStart', function(event, next, current) {
             self.location = $location.path();
