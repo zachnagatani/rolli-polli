@@ -11,7 +11,7 @@
             if (!token) {
                 $state.go('home');
             }
-            api.get('http://localhost:8000/get-polls/znagatani', {
+            api.get('http://localhost:8000/get-polls/' + auth.currentUser().username, {
                 headers: {
                     Authorization: 'Bearer ' + token
                 }

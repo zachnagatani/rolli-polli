@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('rolliPolli')
-        .controller('signupCtrl', ['$state', 'api', 'auth', function($state, api, auth) {
+        .controller('signupCtrl', ['$state', '$scope', 'api', 'auth', function($state, $scope, api, auth) {
             const self = this;
 
             self.signup = function(username, email, password, verify, e) {
@@ -15,6 +15,8 @@
                     'verify': verify
                 }).then(function success(response) {
                     auth.saveToken(response.data);
+                    self.isLoggedIn = true;
+                    $scope.$emit('login', self.isLoggedIn);
                     $state.go('mypolls');
                 }, function error(err) {
                     console.log(err);
