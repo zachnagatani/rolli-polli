@@ -2,8 +2,10 @@
     'use strict';
 
     angular.module('rolliPolli')
-        .controller('loginCtrl', ['$state', '$scope', 'api', 'auth', function($state, $scope, api, auth) {
+        .controller('loginCtrl', ['$state', '$scope', '$location', 'api', 'auth', function($state, $scope, $location, api, auth) {
             const self = this;
+
+            self.location = $location.path();
 
             self.login = function(username, password, e) {
                 e.preventDefault();
@@ -14,7 +16,7 @@
                     $scope.$emit('login', self.isLoggedIn);
                     $state.go('mypolls');
                 }, function error(err) {
-                    console.log(err);
+                    alert('We couldn\'t log you in. Please check your connection and try again');
                 });
             };
         }]);

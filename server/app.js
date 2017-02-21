@@ -19,9 +19,7 @@ mongoose.connect(dbURL);
 app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser());
-// app.use(session({ secret: secret() }));
 app.use(passport.initialize());
-// app.use(passport.session());
 initPassport(passport);
 // Hello world
 app.get('/', (req, res) => {
@@ -29,16 +27,14 @@ app.get('/', (req, res) => {
 });
 
 app.post('/signup', passport.authenticate('signup'), (req, res) => {
-    console.log(req.user);
     res.json(req.user.generateJwt(req.user.username, req.user._id));
 });
 
 app.post('/login', passport.authenticate('login'), (req, res) => {
-    console.log(req.user);
     res.json(req.user.generateJwt(req.user.username, req.user._id));
 });
 
-app.post('/new-poll', /*preAuth,*/ (req, res) => {
+app.post('/new-poll', preAuth, (req, res) => {
     const newPoll = Poll({
         username: req.body.username,
         question: req.body.question,
@@ -50,7 +46,6 @@ app.post('/new-poll', /*preAuth,*/ (req, res) => {
             return console.log(err);
         }
 
-        console.log('Poll added.');
         res.end('Poll added: ' + newPoll);
     });
 });

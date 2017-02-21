@@ -15,6 +15,11 @@
                 e.preventDefault();
                 const form = document.getElementById('poll-form');
 
+                if (optionsNumber < 2) {
+                    alert('You must have more than one option.');
+                    return;
+                }
+
                 let counter = 1,
                     options = [];
                 while (counter <= optionsNumber) {
@@ -27,10 +32,15 @@
                     username: auth.currentUser().username,
                     question: question,
                     options: options
+                }, {
+                    headers: {
+                        Authorization: 'Bearer ' + auth.getToken()
+                    }
                 }).then(function sucess(response) {
                     console.log(response.data);
                 }, function error(err) {
                     console.log(err);
+                    alert('There was an error submitting the poll. Please check your internet connection and try again.');
                 });
             };
         }]);

@@ -6,7 +6,6 @@ html, body, main {
     height: 100%;
 }
 
-// Helpers
 .flexChildCenter {
     margin: auto;
 }
@@ -42,6 +41,11 @@ html, body, main {
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 
+.form-control {
+    height: 50px;
+    border-radius: 6px;
+}
+
 .signupMain {
     display: flex;
     background: $accent;
@@ -52,7 +56,7 @@ html, body, main {
 
 .pollsMain {
     padding-top: 60px;
-    background: $primary-color;
+    background: $accent;
     color: $text;
 }
 

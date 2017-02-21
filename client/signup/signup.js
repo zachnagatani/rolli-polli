@@ -2,8 +2,10 @@
     'use strict';
 
     angular.module('rolliPolli')
-        .controller('signupCtrl', ['$state', '$scope', 'api', 'auth', function($state, $scope, api, auth) {
+        .controller('signupCtrl', ['$state', '$scope', '$location', 'api', 'auth', function($state, $scope, $location, api, auth) {
             const self = this;
+
+            self.location = $location.path();
 
             self.signup = function(username, email, password, verify, e) {
                 e.preventDefault();
@@ -19,7 +21,7 @@
                     $scope.$emit('login', self.isLoggedIn);
                     $state.go('mypolls');
                 }, function error(err) {
-                    console.log(err);
+                    alert('We couldn\'t get you signed up. Please check your internet connection and try again.');
                 });
             };
         }]);
