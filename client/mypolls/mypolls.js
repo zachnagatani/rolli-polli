@@ -6,6 +6,10 @@
             const self = this,
                   token = auth.getToken();
 
+            if (!auth.isLoggedIn()) {
+                $state.go('login');
+            }
+
             self.calculateVotes = voteCalculator.calculateVotes;
             self.currentUser = auth.currentUser().username;
 
