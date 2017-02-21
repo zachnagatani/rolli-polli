@@ -5,6 +5,10 @@
         .controller('signupCtrl', ['$state', '$scope', '$location', 'api', 'auth', function($state, $scope, $location, api, auth) {
             const self = this;
 
+            if (auth.isLoggedIn()) {
+                $state.go('mypolls');
+            }
+
             self.location = $location.path();
 
             self.signup = function(username, email, password, verify, e) {

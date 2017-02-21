@@ -5,6 +5,10 @@
         .controller('loginCtrl', ['$state', '$scope', '$location', 'api', 'auth', function($state, $scope, $location, api, auth) {
             const self = this;
 
+            if (auth.isLoggedIn()) {
+                $state.go('mypolls');
+            }
+
             self.location = $location.path();
 
             self.login = function(username, password, e) {
