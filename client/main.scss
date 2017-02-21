@@ -6,6 +6,11 @@ html, body, main {
     height: 100%;
 }
 
+// Helpers
+.flexChildCenter {
+    margin: auto;
+}
+
 .navbar {
     margin-bottom: 0;
     background: #fff;
@@ -39,10 +44,10 @@ html, body, main {
 
 .signupMain {
     display: flex;
-    align-items: center;
-    justify-content: center;
     background: $accent;
     color: $copy;
+    overflow: auto;
+    padding: 50px;
 }
 
 .pollsMain {

@@ -2,8 +2,10 @@
     'use strict';
 
     angular.module('rolliPolli')
-        .controller('newPollCtrl', ['api', 'auth', function(api, auth) {
+        .controller('newPollCtrl', ['$location', 'api', 'auth', function($location, api, auth) {
             const self = this;
+
+            self.location = $location.path();
 
             self.getNumber = num => {
                 return new Array(num);

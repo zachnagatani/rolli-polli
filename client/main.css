@@ -1,6 +1,9 @@
 html, body, main {
   height: 100%; }
 
+.flexChildCenter {
+  margin: auto; }
+
 .navbar {
   margin-bottom: 0;
   background: #fff;
@@ -28,10 +31,10 @@ html, body, main {
 
 .signupMain {
   display: flex;
-  align-items: center;
-  justify-content: center;
   background: #8BC34A;
-  color: #212121; }
+  color: #212121;
+  overflow: auto;
+  padding: 50px; }
 
 .pollsMain {
   padding-top: 60px;

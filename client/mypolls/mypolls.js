@@ -7,11 +7,12 @@
                   token = auth.getToken();
 
             self.calculateVotes = voteCalculator.calculateVotes;
+            self.currentUser = auth.currentUser().username;
 
             if (!token) {
                 $state.go('home');
             }
-            api.get('http://localhost:8000/get-polls/' + auth.currentUser().username, {
+            api.get('http://localhost:8000/get-polls/' + self.currentUser, {
                 headers: {
                     Authorization: 'Bearer ' + token
                 }
