@@ -22,6 +22,8 @@
                 }
             }).then(function(response) {
                 self.polls = response.data;
+            }).catch(function(err) {
+                alert('We couldn\'t get your polls. Please check your connection and try again.');
             });
         }]);
 })();

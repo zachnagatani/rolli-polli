@@ -41,6 +41,7 @@ html, body, main {
   padding: 50px; }
 
 .pollsMain {
+  overflow: auto;
   padding-top: 60px;
   background: #8BC34A;
   color: #fff; }

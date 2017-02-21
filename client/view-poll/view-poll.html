@@ -10,7 +10,7 @@
             <div class="col-sm-6 col-sm-offset-3">
                 <div class="btn btn-default btn-block btn-lg radio" ng-click="vm.clickRadio(option.name)">
                     <label for="vote">
-                        <input type="radio" name="vote" id="{{option.name}}" value="{{option.name}}">
+                        <input type="radio" name="vote" id="{{option.name}}" value="{{option.name}}" ng-model="vm.vote">
                         {{option.name}}
                     </label>
                 </div>
@@ -19,7 +19,7 @@
 
         <div class="row">
             <div class="col-sm-4 col-sm-offset-4">
-                <input type="submit" class="btn btn-success btn-block btn-lg" value="Vote!">
+                <input type="submit" class="btn btn-success btn-block btn-lg" value="Vote!" ng-click="vm.castVote(vm.vote, $event)">
             </div>
         </div>
     </form>

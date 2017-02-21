@@ -89,13 +89,13 @@ app.get('/view-poll/:id', (req, res) => {
 
 
 /** TODO: UPDATE POLL ENDPOINT FOR ADDING VOTES */
-// app.post('/update-poll/:id', (req, res) => {
-//     Poll.findByIdAndUpdate({
-//         _id: req.params.id
-//     }, {
-//         poll
-//     });
-// });
+app.post('/update-poll/:id', (req, res) => {
+    Poll.findByIdAndUpdate({
+        _id: req.params.id
+    }, {
+        options
+    });
+});
 
 app.delete('/delete-poll/:id', /*preAuth,*/ (req, res) => {
     Poll.findByIdAndRemove({
