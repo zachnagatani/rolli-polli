@@ -93,7 +93,13 @@ app.post('/update-poll/:id', (req, res) => {
     Poll.findByIdAndUpdate({
         _id: req.params.id
     }, {
-        options
+        options: req.body.options
+    }, (err, poll) => {
+        if (err) {
+            return console.log(err);
+        }
+
+        res.json(poll);
     });
 });
 

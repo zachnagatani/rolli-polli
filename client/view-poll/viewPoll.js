@@ -6,6 +6,7 @@
             const self = this;
 
             self.vote = null;
+            self.token = auth.getToken();
 
             self.calcVotes = poll => {
                 let votes = 0;
@@ -28,9 +29,24 @@
                       radiosArr = Array.prototype.slice.call(radios),
                       selected = radiosArr.filter(obj => {
                         return obj.value === vote;
-                      });
+                      })[0],
+                      indexOfSelected = radiosArr.indexOf(selected[0]),
+                      selectedOptionObj = self.poll.options.filter(option => {
+                          return option.name === vote;
+                      })[0];
 
-                console.log(selected);
+                console.log(selected.value);
+                console.log(radiosArr.indexOf(selected));
+                console.log(selectedOptionObj);
+                selectedOptionObj.votes += 1;
+                console.log(selectedOptionObj);
+                self.poll.options[indexOfSelected] = selectedOptionObj;
+                console.log(self.poll.options);
+                api.post('http://localhost:8000/update-poll/' + $stateParams.id, {
+                    options: self.poll.options
+                }).then(function(response) {
+                    console.log(response.data);
+                });
             };
 
             api.get('http://localhost:8000/view-poll/' + $stateParams.id).then(function(response) {
