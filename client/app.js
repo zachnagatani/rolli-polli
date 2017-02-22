@@ -3,7 +3,7 @@
 
     const app = angular.module('rolliPolli', ['ui.router']);
 
-    app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+    app.config(['$stateProvider', '$locationProvider', '$urlMatcherFactoryProvider', '$urlRouterProvider', function($stateProvider, $locationProvider, $urlMatcherFactoryProvider,$urlRouterProvider) {
         $stateProvider
             .state('home',  {
                 url: '/home',
@@ -39,7 +39,20 @@
                 url: '/new-poll',
                 templateUrl: 'new-poll/new-poll.html',
                 controller: 'newPollCtrl as vm'
+            })
+            .state('success', {
+                url: '/success/:id',
+                templateUrl: 'success/success.html',
+                controller: 'successCtrl as vm',
+                params: {
+                    name: null
+                }
             });
+
+            // TODO: FIGURE OUT HTMLW5 MODE workaround for adding trailing slashes breaking routes
+        // $locationProvider.html5Mode(true);
+
+        // $urlMatcherFactoryProvider.strictMode(false);
 
         $urlRouterProvider
             .otherwise('/home');

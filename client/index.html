@@ -2,8 +2,10 @@
 <html ng-app="rolliPolli">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="main.css">
+        <base href="/">
     </head>
     <body ng-controller="mainCtrl as vm">
         <span ng-include="'components/navbar.html'"></span>
@@ -25,6 +27,7 @@
         <script src="view-poll/viewPoll.js"></script>
         <script src="mypolls/mypolls.js"></script>
         <script src="new-poll/newPoll.js"></script>
+        <script src="success/success.js"></script>
         <script id="__bs_script__">//<![CDATA[
     document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.18.8'><\/script>".replace("HOST", location.hostname));
 //]]></script>

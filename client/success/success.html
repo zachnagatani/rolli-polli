@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <h1>Success!</h1>
+            <p class="lead">Your poll, {{vm.pollName}}, has been created.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <p>Find your poll here:</p>
+            <div>
+                <a ng-href="{{vm.pollHref}}">{{vm.pollUrl}}</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <p class="text-center">Share it with your friends:</p>
+        </div>
+    </div>
+
+    <div class="row text-center">
+        <div class="col-sm-2 col-sm-offset-4">
+            <a href="https://twitter.com/intent/tweet?text={{vm.pollUrl}}" target="_blank">
+                <i class="fa fa-twitter fa-3x"></i>
+            </a>
+        </div>
+        <div class="col-sm-2">
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{vm.pollUrl}}" target="_blank">
+                <i class="fa fa-facebook fa-3x"></i></div>
+            </a>
+        </div>
+    </div>
+</div>

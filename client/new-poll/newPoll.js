@@ -41,7 +41,7 @@
                         Authorization: 'Bearer ' + auth.getToken()
                     }
                 }).then(function sucess(response) {
-                    console.log(response.data);
+                    $state.go('success', {'id': response.data._id, 'name': response.data.question});
                 }, function error(err) {
                     console.log(err);
                     alert('There was an error submitting the poll. Please check your internet connection and try again.');

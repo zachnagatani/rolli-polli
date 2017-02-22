@@ -42,6 +42,7 @@
                 console.log(selectedOptionObj);
                 self.poll.options[indexOfSelected] = selectedOptionObj;
                 console.log(self.poll.options);
+
                 api.post('http://localhost:8000/update-poll/' + $stateParams.id, {
                     options: self.poll.options
                 }).then(function(response) {

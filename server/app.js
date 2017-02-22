@@ -46,7 +46,7 @@ app.post('/new-poll', preAuth, (req, res) => {
             return console.log(err);
         }
 
-        res.end('Poll added: ' + newPoll);
+        res.json(newPoll);
     });
 });
 
