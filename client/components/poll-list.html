@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <ul class="list-group">
-            <a ng-repeat="poll in vm.polls" ng-href="{{'#!/view-poll/' + poll._id}}">
+            <a ng-repeat="poll in vm.polls | filter: filterText" ng-href="{{'#!/view-poll/' + poll._id}}">
             <!--<a ng-repeat="poll in vm.polls" ui-sref="view-poll.id({id: poll.id })">-->
                 <li class="list-group-item list-item--poll">
                     <span class="badge votes-badge">{{vm.calculateVotes(poll)}}</span>
