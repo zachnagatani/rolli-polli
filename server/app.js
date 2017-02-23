@@ -2,6 +2,7 @@ const express = require('express'),
       app = express(),
       session = require('express-session'),
       cors = require('cors'),
+      path = require('path'),
       mongo = require('mongodb').MongoClient,
       mongoose = require('mongoose'),
       dbURL = require('./config/dbInfo')(),
@@ -11,13 +12,13 @@ const express = require('express'),
       bodyParser = require('body-parser'),
       cookieParser = require('cookie-parser'),
       Poll = require('./polls/model'),
-      preAuth = require('./auth/preAuth'),
+      preAuth = require('./auth/preAuth');
       port = process.env.PORT || 8000;
 
 mongoose.Promise = global.Promise;
 mongoose.connect(dbURL);
 
-app.use(express.static('../client'));
+app.use(express.static('/client'));
 app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser());
@@ -25,7 +26,7 @@ app.use(passport.initialize());
 initPassport(passport);
 
 app.get('/', (req, res) => {
-    res.sendfile('index.html');
+    res.sendfile(path.resolve('client/index.html'));
 });
 
 // API Routes
