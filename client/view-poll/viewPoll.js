@@ -10,21 +10,33 @@
 
             self.buildGraph = (data) => {
                 const svgHeight = 500,
-                      multiplier = 30;
+                      svgWidth = $('svg').width(),
+                      labelOffset = 5,
+                      xScale = d3.scaleLinear()
+                                 .domain([0, d3.max(data, d => { return d.votes })])
+                                 .range([0, svgWidth]),
+                      yScale = d3.scaleLinear()
+                                      .domain([0, d3.max(data, d => { return d.votes })])
+                                      .range([0, 500]);
+
                 d3.select('.graph')
                     .selectAll('rect')
                     .data(data)
                     .enter()
                     .append('rect')
                     .attr('x', (d, i) => {
-                        return i * multiplier;
+                        return svgWidth/data.length * i;
                     })
                     .attr('y', d => {
-                        return svgHeight - multiplier * d.votes;
+                        // return svgHeight - multiplier * d.votes;
+                        return svgHeight - yScale(d.votes);
                     })
-                    .attr('width', 30)
+                    // .attr('width', 30)
+                    .attr('width', (d, i) => {
+                        return svgWidth/data.length;
+                    })
                     .attr('height', (d, i) => {
-                        return d.votes * multiplier;
+                        return yScale(d.votes);
                     })
                     .attr('fill', '#fff')
                     .attr('stroke', '#1976D2')
@@ -36,10 +48,10 @@
                     .enter()
                     .append('text')
                     .attr('x', (d, i) => {
-                        return i * multiplier;
+                        return svgWidth/data.length * i;
                     })
                     .attr('y', d => {
-                        return svgHeight - multiplier * d.votes - 3;
+                        return svgHeight - labelOffset;
                     })
                     .text(d => {
                         return d.name;
@@ -94,7 +106,7 @@
 
                 self.buildGraph(self.poll.options);
             }).catch(function(err) {
-                alert('We couldn\'t access this poll. Please check your connection and try again.');
+                console.log('We couldn\'t access this poll. Please check your connection and try again.');
             });
         }]);
 })();
