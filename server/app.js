@@ -17,16 +17,18 @@ const express = require('express'),
 mongoose.Promise = global.Promise;
 mongoose.connect(dbURL);
 
+app.use(express.static('../client'));
 app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser());
 app.use(passport.initialize());
 initPassport(passport);
-// Hello world
+
 app.get('/', (req, res) => {
-    res.end('HELLO BABALOO');
+    res.sendfile('index.html');
 });
 
+// API Routes
 app.post('/signup', passport.authenticate('signup'), (req, res) => {
     res.json(req.user.generateJwt(req.user.username, req.user._id));
 });
