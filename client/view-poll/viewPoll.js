@@ -45,9 +45,29 @@
                         return yScale(d.votes);
                     });
 
+                svg.selectAll('text')
+                    .data(data)
+                    .enter()
+                    .append('text')
+                    .attr('x', (d, i) => {
+                        return svgWidth/data.length * i + padding + labelOffset;
+                    })
+                    .attr('y', d => {
+                        // return svgHeight - labelOffset;
+                        return svgHeight + padding - labelOffset;
+                    })
+                    .text(d => {
+                        return d.name + ' ' + d.votes;
+                    });
+
                 svg.append('g')
                     .attr('transform', 'translate(50, 25)')
                     .call(yAxis);
+
+                // svg.selectAll('text')
+                //     .data(data)
+                //     .enter()
+                //     .append('text')
             };
 
             self.updateGraph = data => {
