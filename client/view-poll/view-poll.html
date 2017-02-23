@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <form method="POST" action="">
+    <form method="POST" action="" ng-show="!vm.voted">
         <div class="row row--option" ng-repeat="option in vm.poll.options">
             <div class="col-sm-6 col-sm-offset-3">
                 <div class="btn btn-default btn-block btn-lg radio" ng-click="vm.clickRadio(option.name)">
@@ -30,4 +30,12 @@
             </div>
         </div>
     </form>
+
+    <div class="row" ng-hide="!vm.voted">
+        <div class="col-xs-12">
+            <p class="lead text-center">
+                Thanks for voting!
+            </p>
+        </div>
+    </div>
 </div>

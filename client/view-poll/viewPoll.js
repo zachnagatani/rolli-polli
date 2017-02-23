@@ -6,6 +6,7 @@
             const self = this;
 
             self.vote = null;
+            self.voted = false;
             self.token = auth.getToken();
 
             self.buildGraph = (data) => {
@@ -141,6 +142,7 @@
                 }).then(function(response) {
                     console.log(response.data);
                     self.updateGraph(response.data.options);
+                    self.voted = true;
                 });
             };
 
