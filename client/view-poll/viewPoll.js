@@ -8,6 +8,44 @@
             self.vote = null;
             self.token = auth.getToken();
 
+            self.buildGraph = (data) => {
+                const svgHeight = 500,
+                      multiplier = 30;
+                d3.select('.graph')
+                    .selectAll('rect')
+                    .data(data)
+                    .enter()
+                    .append('rect')
+                    .attr('x', (d, i) => {
+                        return i * multiplier;
+                    })
+                    .attr('y', d => {
+                        return svgHeight - multiplier * d.votes;
+                    })
+                    .attr('width', 30)
+                    .attr('height', (d, i) => {
+                        return d.votes * multiplier;
+                    })
+                    .attr('fill', '#fff')
+                    .attr('stroke', '#1976D2')
+                    .attr('stroke-width', '2px');
+
+                d3.select('.graph')
+                    .selectAll('text')
+                    .data(data)
+                    .enter()
+                    .append('text')
+                    .attr('x', (d, i) => {
+                        return i * multiplier;
+                    })
+                    .attr('y', d => {
+                        return svgHeight - multiplier * d.votes - 3;
+                    })
+                    .text(d => {
+                        return d.name;
+                    });
+            };
+
             self.calcVotes = poll => {
                 let votes = 0;
                 poll.options.forEach(option => {
@@ -53,6 +91,8 @@
             api.get('http://localhost:8000/view-poll/' + $stateParams.id).then(function(response) {
                 console.log(response.data);
                 self.poll = response.data;
+
+                self.buildGraph(self.poll.options);
             }).catch(function(err) {
                 alert('We couldn\'t access this poll. Please check your connection and try again.');
             });
