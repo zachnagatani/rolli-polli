@@ -14,6 +14,7 @@ const express = require('express'),
       preAuth = require('./auth/preAuth'),
       port = process.env.PORT || 8000;
 
+mongoose.Promise = global.Promise;
 mongoose.connect(dbURL);
 
 app.use(cors());
@@ -94,6 +95,8 @@ app.post('/update-poll/:id', (req, res) => {
         _id: req.params.id
     }, {
         options: req.body.options
+    } , {
+        new: true
     }, (err, poll) => {
         if (err) {
             return console.log(err);
