@@ -13,16 +13,16 @@
                       svgWidth = $('svg').width(),
                       labelOffset = 5,
                       xScale = d3.scaleLinear()
-                                 .domain([0, d3.max(data, d => { return d.votes })])
-                                 .range([0, svgWidth]),
+                        .domain([0, d3.max(data, d => { return d.votes })])
+                        .range([0, svgWidth]),
                       yScale = d3.scaleLinear()
-                                      .domain([0, d3.max(data, d => { return d.votes })])
-                                      .range([0, 500]);
+                        .domain([0, d3.max(data, d => { return d.votes })])
+                        .range([0, 500]),
+                      svg = d3.select('.graph')
+                        .selectAll('rect')
+                        .data(data);
 
-                d3.select('.graph')
-                    .selectAll('rect')
-                    .data(data)
-                    .enter()
+                svg.enter()
                     .append('rect')
                     .attr('x', (d, i) => {
                         return svgWidth/data.length * i;
@@ -41,20 +41,21 @@
                     .attr('fill', '#fff')
                     .attr('stroke', '#1976D2')
                     .attr('stroke-width', '2px');
+            };
 
-                d3.select('.graph')
-                    .selectAll('text')
+            self.updateGraph = data => {
+                const yScale = d3.scaleLinear()
+                    .domain([0, d3.max(data, d => { return d.votes })])
+                    .range([0, 500]),
+                    svgHeight = 500,
+                    svg = d3.select('.graph')
+                    .selectAll('rect')
                     .data(data)
-                    .enter()
-                    .append('text')
-                    .attr('x', (d, i) => {
-                        return svgWidth/data.length * i;
-                    })
                     .attr('y', d => {
-                        return svgHeight - labelOffset;
+                        return svgHeight - yScale(d.votes);
                     })
-                    .text(d => {
-                        return d.name;
+                    .attr('height', (d, i) => {
+                        return yScale(d.votes);
                     });
             };
 
@@ -97,6 +98,7 @@
                     options: self.poll.options
                 }).then(function(response) {
                     console.log(response.data);
+                    self.updateGraph(response.data.options);
                 });
             };
 
