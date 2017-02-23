@@ -8,6 +8,7 @@
             self.vote = null;
             self.voted = false;
             self.token = auth.getToken();
+            self.username = auth.currentUser().username;
 
             self.buildGraph = (data) => {
                 const padding = 50,
@@ -138,7 +139,8 @@
                 console.log(self.poll.options);
 
                 api.post('http://localhost:8000/update-poll/' + $stateParams.id, {
-                    options: self.poll.options
+                    options: self.poll.options,
+                    voter: self.username
                 }).then(function(response) {
                     console.log(response.data);
                     self.updateGraph(response.data.options);
@@ -149,8 +151,10 @@
             api.get('http://localhost:8000/view-poll/' + $stateParams.id).then(function(response) {
                 console.log(response.data);
                 self.poll = response.data;
-
                 self.buildGraph(self.poll.options);
+                if (self.poll.voters.includes(self.username)) {
+                    self.voted = true;
+                }
             }).catch(function(err) {
                 console.log('We couldn\'t access this poll. Please check your connection and try again.');
             });

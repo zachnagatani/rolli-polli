@@ -94,7 +94,8 @@ app.post('/update-poll/:id', (req, res) => {
     Poll.findByIdAndUpdate({
         _id: req.params.id
     }, {
-        options: req.body.options
+        options: req.body.options,
+        $push: { voters: req.body.voter }
     } , {
         new: true
     }, (err, poll) => {
