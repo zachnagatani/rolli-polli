@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('rolliPolli')
-        .service('auth', ['$window', function($window) {
+        .service('auth', ['$window', '$state', function($window, $state) {
             const self = this;
 
             self.saveToken = token => {

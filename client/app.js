@@ -58,18 +58,18 @@
             .otherwise('/home');
     }]);
 
-    app.controller('mainCtrl', ['$location', '$rootScope', '$scope', 'auth', function($location, $rootScope, $scope, auth) {
+    app.controller('mainCtrl', ['$location', '$rootScope', '$scope', '$state', 'auth', function($location, $rootScope, $scope, $state, auth) {
         const self = this;
 
         self.isLoggedIn = auth.isLoggedIn();
         self.logout = () => {
             auth.logout();
             self.isLoggedIn = false;
+            $state.go('login');
         };
 
         $scope.$on('login', function(event, loggedIn) {
             self.isLoggedIn = loggedIn;
-            console.log(loggedIn);
         });
 
         $rootScope.$on('$locationChangeStart', function(event, next, current) {

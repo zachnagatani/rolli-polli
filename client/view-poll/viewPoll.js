@@ -29,21 +29,21 @@
                     .data(data)
                     .enter()
                     .append('rect')
+                    .attr('fill', '#fff')
+                    .attr('stroke', '#1976D2')
+                    .attr('stroke-width', '2px')
                     .attr('x', (d, i) => {
                         return svgWidth/data.length * i + padding;
-                    })
-                    .attr('y', d => {
-                        return svgHeight - yScale(d.votes) + padding/2;
                     })
                     .attr('width', (d, i) => {
                         return svgWidth/data.length;
                     })
+                    .attr('y', d => {
+                        return svgHeight - yScale(d.votes) + padding/2;
+                    })
                     .attr('height', (d, i) => {
                         return yScale(d.votes);
-                    })
-                    .attr('fill', '#fff')
-                    .attr('stroke', '#1976D2')
-                    .attr('stroke-width', '2px')
+                    });
 
                 svg.append('g')
                     .attr('transform', 'translate(50, 25)')
@@ -69,6 +69,7 @@
 
                 svg.selectAll('rect')
                     .data(data)
+                    .transition()
                     .attr('y', d => {
                         return svgHeight - yScale(d.votes) + padding/2;
                     })

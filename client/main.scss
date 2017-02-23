@@ -2,8 +2,16 @@
 
 // main.scss contains common styles that work on multiple pages
 
-html, body, main {
+html {
     height: 100%;
+}
+
+body {
+    min-height: 100%;
+}
+
+main {
+    min-height: 100vh;
 }
 
 .flexChildCenter {
@@ -17,6 +25,10 @@ html, body, main {
     border-radius: 0;
     width: 100%;
     color: $copy;
+}
+
+.navbar__logout {
+    cursor: pointer;
 }
 
 .btn {
@@ -50,12 +62,11 @@ html, body, main {
     display: flex;
     background: $accent;
     color: $copy;
-    overflow: auto;
     padding: 50px;
+    justify-content: center;
 }
 
 .pollsMain {
-    overflow: auto;
     padding-top: 60px;
     background: $accent;
     color: $text;
