@@ -91,6 +91,7 @@ app.get('/view-poll/:id', (req, res) => {
 
 /** TODO: UPDATE POLL ENDPOINT FOR ADDING VOTES */
 app.post('/update-poll/:id', (req, res) => {
+    // Determine which options to pass depending on whether auth header is presenty
     const determineOptions = (req) => {
         if (req.headers.authorization) {
             return { options: req.body.options, $push: { voters: req.body.voter } };
