@@ -9,29 +9,32 @@
             self.token = auth.getToken();
 
             self.buildGraph = (data) => {
-                const svgHeight = 500,
-                      svgWidth = $('svg').width(),
+                const padding = 50,
+                      svgHeight = 500 - padding,
+                      svgWidth = $('svg').width() - padding,
                       labelOffset = 5,
                       xScale = d3.scaleLinear()
                         .domain([0, d3.max(data, d => { return d.votes })])
-                        .range([0, svgWidth]),
+                        .range([padding, svgWidth]),
                       yScale = d3.scaleLinear()
                         .domain([0, d3.max(data, d => { return d.votes })])
-                        .range([0, 500]),
-                      svg = d3.select('.graph')
-                        .selectAll('rect')
-                        .data(data);
+                        .range([0, svgHeight]),
+                      yAxisScale = d3.scaleLinear()
+                        .domain([0, d3.max(data, d => { return d.votes })])
+                        .range([svgHeight, 0]),
+                      yAxis = d3.axisLeft(yAxisScale),
+                      svg = d3.select('.graph');
 
-                svg.enter()
+                svg.selectAll('rect')
+                    .data(data)
+                    .enter()
                     .append('rect')
                     .attr('x', (d, i) => {
-                        return svgWidth/data.length * i;
+                        return svgWidth/data.length * i + padding;
                     })
                     .attr('y', d => {
-                        // return svgHeight - multiplier * d.votes;
-                        return svgHeight - yScale(d.votes);
+                        return svgHeight - yScale(d.votes) + padding/2;
                     })
-                    // .attr('width', 30)
                     .attr('width', (d, i) => {
                         return svgWidth/data.length;
                     })
@@ -40,7 +43,11 @@
                     })
                     .attr('fill', '#fff')
                     .attr('stroke', '#1976D2')
-                    .attr('stroke-width', '2px');
+                    .attr('stroke-width', '2px')
+
+                svg.append('g')
+                    .attr('transform', 'translate(50, 25)')
+                    .call(yAxis);
             };
 
             self.updateGraph = data => {
