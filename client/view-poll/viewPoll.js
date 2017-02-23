@@ -8,7 +8,34 @@
             self.vote = null;
             self.voted = false;
             self.token = auth.getToken();
-            self.username = auth.currentUser().username;
+            if (auth.isLoggedIn()) {
+                self.username = auth.currentUser().username;
+            }
+
+            self.userVote = () => {
+                api.post('http://localhost:8000/update-poll/' + $stateParams.id, {
+                    options: self.poll.options,
+                    voter: self.username
+                }, {
+                    headers: {
+                        Authorization: 'Bearer ' + self.token
+                    }
+                }).then(function(response) {
+                    console.log(response.data);
+                    self.updateGraph(response.data.options);
+                    self.voted = true;
+                });
+            };
+
+            self.nonUserVote = () => {
+                api.post('http://localhost:8000/update-poll/' + $stateParams.id, {
+                    options: self.poll.options,
+                }).then(function(response) {
+                    console.log(response.data);
+                    self.updateGraph(response.data.options);
+                    self.voted = true;
+                });
+            };
 
             self.buildGraph = (data) => {
                 const padding = 50,
@@ -138,14 +165,11 @@
                 self.poll.options[indexOfSelected] = selectedOptionObj;
                 console.log(self.poll.options);
 
-                api.post('http://localhost:8000/update-poll/' + $stateParams.id, {
-                    options: self.poll.options,
-                    voter: self.username
-                }).then(function(response) {
-                    console.log(response.data);
-                    self.updateGraph(response.data.options);
-                    self.voted = true;
-                });
+                if(auth.isLoggedIn()) {
+                    self.userVote();
+                } else {
+                    self.nonUserVote();
+                }
             };
 
             api.get('http://localhost:8000/view-poll/' + $stateParams.id).then(function(response) {

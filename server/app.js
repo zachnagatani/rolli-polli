@@ -91,12 +91,17 @@ app.get('/view-poll/:id', (req, res) => {
 
 /** TODO: UPDATE POLL ENDPOINT FOR ADDING VOTES */
 app.post('/update-poll/:id', (req, res) => {
+    const determineOptions = (req) => {
+        if (req.headers.authorization) {
+            return { options: req.body.options, $push: { voters: req.body.voter } };
+        }
+
+        return { options: req.body.options };
+    };
+
     Poll.findByIdAndUpdate({
         _id: req.params.id
-    }, {
-        options: req.body.options,
-        $push: { voters: req.body.voter }
-    } , {
+    }, determineOptions(req), {
         new: true
     }, (err, poll) => {
         if (err) {
