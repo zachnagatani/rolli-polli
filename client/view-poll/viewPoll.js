@@ -51,19 +51,33 @@
             };
 
             self.updateGraph = data => {
-                const yScale = d3.scaleLinear()
-                    .domain([0, d3.max(data, d => { return d.votes })])
-                    .range([0, 500]),
-                    svgHeight = 500,
-                    svg = d3.select('.graph')
-                    .selectAll('rect')
+                const padding = 50,
+                      svgHeight = 500 - padding,
+                      svgWidth = $('svg').width() - padding,
+                      labelOffset = 5,
+                      xScale = d3.scaleLinear()
+                        .domain([0, d3.max(data, d => { return d.votes })])
+                        .range([padding, svgWidth]),
+                      yScale = d3.scaleLinear()
+                        .domain([0, d3.max(data, d => { return d.votes })])
+                        .range([0, svgHeight]),
+                      yAxisScale = d3.scaleLinear()
+                        .domain([0, d3.max(data, d => { return d.votes })])
+                        .range([svgHeight, 0]),
+                      yAxis = d3.axisLeft(yAxisScale),
+                      svg = d3.select('.graph');
+
+                svg.selectAll('rect')
                     .data(data)
                     .attr('y', d => {
-                        return svgHeight - yScale(d.votes);
+                        return svgHeight - yScale(d.votes) + padding/2;
                     })
                     .attr('height', (d, i) => {
                         return yScale(d.votes);
                     });
+
+                svg.select('g')
+                    .call(yAxis);
             };
 
             self.calcVotes = poll => {
