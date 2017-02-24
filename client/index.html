@@ -8,7 +8,7 @@
     </head>
     <body ng-controller="mainCtrl as vm">
         <span ng-include="'components/navbar.html'"></span>
-        <main ng-class="{signupMain: vm.location === '/signup' || vm.location === '/login' || vm.location === '/new-poll' || vm.location === '/mypolls' || vm.location === '/polls' || vm.location.startsWith('/view-poll/')}">
+        <main ng-class="{signupMain: vm.location === '/signup' || vm.location === '/login' || vm.location === '/new-poll' || vm.location === '/mypolls' || vm.location === '/polls' || vm.location.startsWith('/view-poll/') || vm.location.startsWith('/success/') }">
             <ui-view ng-class="{flexChildCenter: vm.location === '/signup' || vm.location === '/login' || vm.location === '/new-poll'}"></ui-view>
         </main>
         <script src="/node_modules/jquery/dist/jquery.js"></script>

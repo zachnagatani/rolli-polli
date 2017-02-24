@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('rolliPolli')
-        .controller('signupCtrl', ['$state', '$scope', '$location', 'api', 'auth', function($state, $scope, $location, api, auth) {
+        .controller('signupCtrl', ['$state', '$scope', '$location', '$window', 'api', 'auth', function($state, $scope, $location, $window, api, auth) {
             const self = this;
 
             if (auth.isLoggedIn()) {
