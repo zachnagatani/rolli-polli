@@ -18,7 +18,8 @@ const express = require('express'),
 mongoose.Promise = global.Promise;
 mongoose.connect(dbURL);
 
-app.use(express.static('/client'));
+app.use(express.static('client'));
+app.use('/node_modules', express.static('node_modules'))
 app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser());
@@ -26,7 +27,7 @@ app.use(passport.initialize());
 initPassport(passport);
 
 app.get('/', (req, res) => {
-    res.sendfile(path.resolve('client/index.html'));
+    res.sendFile(path.resolve('client/index.html'));
 });
 
 // API Routes
