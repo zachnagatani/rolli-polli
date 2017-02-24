@@ -13,7 +13,7 @@
             }
 
             self.userVote = () => {
-                api.post('http://localhost:8000/update-poll/' + $stateParams.id, {
+                api.post('/update-poll/' + $stateParams.id, {
                     options: self.poll.options,
                     voter: self.username
                 }, {
@@ -28,7 +28,7 @@
             };
 
             self.nonUserVote = () => {
-                api.post('http://localhost:8000/update-poll/' + $stateParams.id, {
+                api.post('/update-poll/' + $stateParams.id, {
                     options: self.poll.options,
                 }).then(function(response) {
                     console.log(response.data);
@@ -172,7 +172,7 @@
                 }
             };
 
-            api.get('http://localhost:8000/view-poll/' + $stateParams.id).then(function(response) {
+            api.get('/view-poll/' + $stateParams.id).then(function(response) {
                 console.log(response.data);
                 self.poll = response.data;
                 self.buildGraph(self.poll.options);

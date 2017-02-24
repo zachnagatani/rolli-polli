@@ -7,7 +7,7 @@
 
             self.calculateVotes = voteCalculator.calculateVotes;
 
-            api.get('http://localhost:8000/get-polls').then(function(response) {
+            api.get('/get-polls').then(function(response) {
                 console.log(response.data);
                 self.polls = response.data;
             }).catch(function(err) {

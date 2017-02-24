@@ -16,7 +16,7 @@
             if (!token) {
                 $state.go('home');
             }
-            api.get('http://localhost:8000/get-polls/' + self.currentUser, {
+            api.get('/get-polls/' + self.currentUser, {
                 headers: {
                     Authorization: 'Bearer ' + token
                 }

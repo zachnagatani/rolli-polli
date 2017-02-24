@@ -6,7 +6,7 @@
             const self = this;
 
             self.pollName = $stateParams.name;
-            self.pollUrl = 'http://localhost:3000/#!/view-poll/' + $stateParams.id;
+            self.pollUrl = 'http://roli-polli.herokuapp.com/view-poll/' + $stateParams.id;
             self.pollHref = '#!/view-poll/' + $stateParams.id;
         }]);
 })();

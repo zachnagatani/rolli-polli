@@ -32,7 +32,7 @@
                     counter++;
                 }
 
-                api.post('http://localhost:8000/new-poll', {
+                api.post('/new-poll', {
                     username: auth.currentUser().username,
                     question: question,
                     options: options

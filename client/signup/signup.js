@@ -14,7 +14,7 @@
             self.signup = function(username, email, password, verify, e) {
                 e.preventDefault();
 
-                api.post('http://localhost:8000/signup', {
+                api.post('/signup', {
                     'username': username,
                     'email': email,
                     'password': password,
