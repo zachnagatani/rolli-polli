@@ -58,8 +58,8 @@
                     .data(data)
                     .enter()
                     .append('rect')
-                    .attr('fill', '#fff')
-                    .attr('stroke', '#1976D2')
+                    .attr('fill', '#1976D2')
+                    .attr('stroke', '#fff')
                     .attr('stroke-width', '2px')
                     .attr('x', (d, i) => {
                         return svgWidth/data.length * i + padding;
