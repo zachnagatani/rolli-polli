@@ -22,6 +22,7 @@
   "homepage": "https://github.com/zachnagatani/rolli-polli#readme",
   "dependencies": {
     "angular": "^1.6.2",
+    "angular-messages": "^1.6.2",
     "angular-ui-router": "^0.4.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.16.1",

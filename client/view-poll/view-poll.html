@@ -25,6 +25,27 @@
             </div>
         </div>
 
+        <div class="row row--new-option">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="btn btn-default btn-block btn-lg radio" ng-click="vm.clickRadio('new-option-radio'); vm.addNewOption = true">
+                    <label for=" vote">
+                        <input type="radio" name="vote" id="new-option-radio" value="newOption" ng-model="vm.vote">
+                        Add New Option
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" ng-show="vm.addNewOption">
+            <div class="col-sm-6 col-sm-offset-3 text-center">
+                <div class="form-group">
+                    <label for="new-option">Add New Option</label>
+                    <input type="text" name="new-option" id="new-option" ng-model="vm.newOption" class="form-control">
+                    {{vm.newOption}}
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-sm-4 col-sm-offset-4">
                 <input type="submit" class="btn btn-primary btn-block btn-lg" value="Vote!" ng-click="vm.castVote(vm.vote, $event)">

@@ -147,24 +147,44 @@
             self.castVote = (vote, e) => {
                 e.preventDefault();
 
+                // Grab the radio buttons on the page, convert them to an Array
+                // grab the selected button, its index, and corresponding option object
+                // in self.poll
                 const radios = document.getElementsByName('vote'),
                       radiosArr = Array.prototype.slice.call(radios),
                       selected = radiosArr.filter(obj => {
                         return obj.value === vote;
                       })[0],
-                      indexOfSelected = radiosArr.indexOf(selected[0]),
+                      indexOfSelected = radiosArr.indexOf(selected),
                       selectedOptionObj = self.poll.options.filter(option => {
                           return option.name === vote;
                       })[0];
 
-                console.log(selected.value);
-                console.log(radiosArr.indexOf(selected));
-                console.log(selectedOptionObj);
-                selectedOptionObj.votes += 1;
-                console.log(selectedOptionObj);
-                self.poll.options[indexOfSelected] = selectedOptionObj;
-                console.log(self.poll.options);
+                // Handler for if a new option is added
+                if (selected.value === 'newOption') {
+                    if (!self.newOption) {
+                        alert('Your new option cannot be empty.');
+                        return;
+                    }
 
+                    self.poll.options.push({
+                        name: self.newOption,
+                        votes: 1
+                    });
+
+                    if(auth.isLoggedIn()) {
+                        self.userVote();
+                    } else {
+                        self.nonUserVote();
+                    }
+                }
+
+                // Increment vote
+                selectedOptionObj.votes += 1;
+                // Update options
+                self.poll.options[indexOfSelected] = selectedOptionObj;
+
+                // Cast vote
                 if(auth.isLoggedIn()) {
                     self.userVote();
                 } else {

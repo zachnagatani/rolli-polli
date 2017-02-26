@@ -1,7 +1,7 @@
 (() => {
     'use strict';
 
-    const app = angular.module('rolliPolli', ['ui.router']);
+    const app = angular.module('rolliPolli', ['ui.router', 'ngMessages']);
 
     app.config(['$stateProvider', '$locationProvider', '$urlMatcherFactoryProvider', '$urlRouterProvider', function($stateProvider, $locationProvider, $urlMatcherFactoryProvider,$urlRouterProvider) {
         $stateProvider
