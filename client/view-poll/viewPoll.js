@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('rolliPolli')
-        .controller('viewPollCtrl', ['$stateParams', 'api', 'auth', function($stateParams, api, auth) {
+        .controller('viewPollCtrl', ['$state', '$stateParams', '$timeout', 'api', 'auth', function($state, $stateParams, $timeout, api, auth) {
             const self = this;
 
             self.vote = null;
@@ -82,21 +82,15 @@
                         return svgWidth/data.length * i + padding + labelOffset;
                     })
                     .attr('y', d => {
-                        // return svgHeight - labelOffset;
                         return svgHeight + padding - labelOffset;
                     })
                     .text(d => {
-                        return d.name + ' ' + d.votes;
+                        return d.name + ': ' + d.votes;
                     });
 
                 svg.append('g')
                     .attr('transform', 'translate(50, 25)')
                     .call(yAxis);
-
-                // svg.selectAll('text')
-                //     .data(data)
-                //     .enter()
-                //     .append('text')
             };
 
             self.updateGraph = data => {
@@ -129,7 +123,7 @@
                 svg.selectAll('text')
                     .data(data)
                     .text(d => {
-                        return d.name + ' ' + d.votes;
+                        return d.name + ': ' + d.votes;
                     });
 
                 svg.select('g')
@@ -176,6 +170,24 @@
                 } else {
                     self.nonUserVote();
                 }
+            };
+
+            self.deletePoll = (id) => {
+                const URL = '/delete-poll/' + id;
+
+                $('#confirmation-dialogue').modal('hide');
+
+                $timeout(() => {
+                    api.delete(URL, {
+                        headers: {
+                            Authorization: 'Bearer ' + self.token
+                        }
+                    }).then(function(response) {
+                        $state.go('mypolls');
+                    }).catch(function(response) {
+                        alert('We couldn\'t delete your poll. Please try again.');
+                    });
+                }, 1000);
             };
 
             api.get('/view-poll/' + $stateParams.id).then(function(response) {

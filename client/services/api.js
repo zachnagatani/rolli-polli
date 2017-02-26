@@ -12,5 +12,9 @@
             self.post = (url, body, config) => {
                 return $http.post(url, body, config);
             };
+
+            self.delete = (url, config) => {
+                return $http.delete(url, config);
+            };
         }]);
 })();

@@ -42,7 +42,21 @@
 
     <div class="row" ng-if="vm.username === vm.poll.username">
         <div class="col-md-2 col-md-offset-10">
-            <a href="" class="text-danger">Delete Poll</a>
+            <a href="" class="text-danger" data-toggle="modal" data-target="#confirmation-dialogue">Delete Poll</a>
+        </div>
+    </div>
+
+    <div class="modal fade confirmation-dialogue" tabindex="-1" role="dialog" aria-labelledby="confirmation-dialogue" id="confirmation-dialogue">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    Are you sure you want to delete this poll? This is <strong class="text-danger">irreversible.</strong>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" ng-click="vm.deletePoll(vm.poll._id)">Yes, Delete My Poll</button>
+                    <button class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
