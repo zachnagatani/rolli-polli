@@ -6,7 +6,8 @@ const mongoose = require('mongoose'),
           email: {type: String, required: true, index: {unique: true}},
           password: {type: String, required: true}
       }),
-      secret = require('../../config/secret');
+    //   secret = require('../../config/secret');
+    secret = process.env.SECRET_PHRASE;
 
 userSchema.methods.generateJwt = (username, id) => {
     const expiry = new Date();
