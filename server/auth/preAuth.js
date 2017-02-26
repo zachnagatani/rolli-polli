@@ -10,5 +10,5 @@ const expressJwt = require('express-jwt'),
     secret = process.env.SECRET_PHRASE;
 
 module.exports = expressJwt({
-    secret: secret()
+    secret: secret
 });
