@@ -20,16 +20,26 @@
                 <div class="form-group">
                     <label for="email">Enter an email address</label>
                     <input type="text" name="email" id="email" class="form-control" ng-model="email" required>
+                    <div ng-messages="signupForm.email.$touched && signupForm.email.$error">
+                        <div ng-message="required" class="text-danger">You must enter an email.</div>
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Enter a password</label>
                     <input type="password" name="password" id="password" class="form-control" ng-model="password" required>
+                    <div ng-messages="signupForm.password.$touched && signupForm.password.$error">
+                        <div ng-message="required" class="text-danger">You must enter a password.</div>
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="verify">Please enter password again</label>
-                    <input type="password" name="verify" id="verify" class="form-control" ng-model="verify" required>
+                    <input type="password" name="verify" id="verify" class="form-control" ng-model="verify" ng-pattern="{{password}}" required>
+                    <div ng-messages="signupForm.verify.$touched && signupForm.verify.$error">
+                        <div ng-message="required" class="text-danger">Please verify your password.</div>
+                        <div ng-message="pattern" class="text-danger">Your passwords do not match.</div>
+                    </div>
                 </div>
             </div>
 

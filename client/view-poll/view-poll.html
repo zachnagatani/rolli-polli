@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <form method="POST" action="" ng-show="!vm.voted">
+    <form method="POST" action="" ng-show="!vm.voted" name="voteForm" id="voteForm">
         <div class="row row--option" ng-repeat="option in vm.poll.options">
             <div class="col-sm-6 col-sm-offset-3">
                 <div class="btn btn-default btn-block btn-lg radio" ng-click="vm.clickRadio(option.name)">
@@ -40,8 +40,7 @@
             <div class="col-sm-6 col-sm-offset-3 text-center">
                 <div class="form-group">
                     <label for="new-option">Add New Option</label>
-                    <input type="text" name="new-option" id="new-option" ng-model="vm.newOption" class="form-control">
-                    {{vm.newOption}}
+                    <input type="text" name="new-option" id="new-option" ng-model="newOption" class="form-control" required>
                 </div>
             </div>
         </div>

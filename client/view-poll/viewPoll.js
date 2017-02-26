@@ -140,7 +140,10 @@
             };
 
             /** TODO: Don't want to manip dom here? And we are getting $apply already in progress error... */
-            self.clickRadio = id => {
+            self.clickRadio = (id) => {
+                if (self.vote === 'newOption') {
+                    self.addNewOption = false;
+                }
                 document.getElementById(id).click();
             };
 

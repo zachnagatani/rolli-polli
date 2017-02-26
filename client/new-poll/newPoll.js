@@ -19,15 +19,29 @@
                 e.preventDefault();
                 const form = document.getElementById('poll-form');
 
-                if (optionsNumber < 2) {
+                console.log(optionsNumber);
+
+                if (!question) {
+                    alert('You must enter a question.');
+                    return;
+                }
+
+                if (!optionsNumber || optionsNumber < 2) {
                     alert('You must have more than one option.');
                     return;
                 }
 
                 let counter = 1,
                     options = [];
+
                 while (counter <= optionsNumber) {
                     console.log(form.elements['option' + counter].value);
+                    if (!form.elements['option' + counter].value) {
+                        alert('Options cannot be left blank.');
+                        form.elements['option' + counter].focus();
+                        return;
+                    }
+
                     options.push({name: form.elements['option' + counter].value});
                     counter++;
                 }
@@ -40,7 +54,7 @@
                     headers: {
                         Authorization: 'Bearer ' + auth.getToken()
                     }
-                }).then(function sucess(response) {
+                }).then(function success(response) {
                     $state.go('success', {'id': response.data._id, 'name': response.data.question});
                 }, function error(err) {
                     console.log(err);

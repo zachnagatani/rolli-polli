@@ -5,11 +5,14 @@
         </div>
     </div>
 
-    <form method="POST" action="" id="poll-form">
+    <form method="POST" action="" name="pollForm" id="poll-form">
         <div class="row">
             <div class="col-xs-12 form-group">
                 <label for="question">What's the question?</label>
                 <input type="text" name="question" id="question" class="form-control" ng-model="question" required>
+                <div ng-messages="pollForm.question.$touched && pollForm.question.$error">
+                    <div ng-message="required" class="text-danger">Please add a question.</div>
+                </div>
             </div>
         </div>
 
@@ -20,6 +23,10 @@
                 </div>
                 <div class="col-md-2 col-md-offset-5">
                     <input type="number" name="options-number" id="options-number" class="form-control" ng-model="optionsNumber" required>
+                    <div ng-messages="pollForm.optionsNumber.$touched && pollForm.optionsNumber.$error">
+                        <div ng-message="required" class="text-danger">Number of options is required.</div>
+                        <div ng-message="min" class="text-danger">There must be more than one option.</div>
+                    </div>
                 </div>
             </div>
         </div>
