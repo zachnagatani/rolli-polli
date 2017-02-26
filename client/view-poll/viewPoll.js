@@ -126,6 +126,12 @@
                         return yScale(d.votes);
                     });
 
+                svg.selectAll('text')
+                    .data(data)
+                    .text(d => {
+                        return d.name + ' ' + d.votes;
+                    });
+
                 svg.select('g')
                     .call(yAxis);
             };

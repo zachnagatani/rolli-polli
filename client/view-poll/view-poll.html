@@ -1,8 +1,9 @@
 <div class="container container--background">
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12 text-center">
             <h1 class="text-center">Poll:</h1>
             <p class="lead text-center">"{{vm.poll.question}}"</p>
+            <p>Created by {{vm.poll.username}}</p>
         </div>
     </div>
 
@@ -33,9 +34,15 @@
 
     <div class="row" ng-hide="!vm.voted">
         <div class="col-xs-12">
-            <p class="lead text-center">
+            <p class="lead text-center thanks">
                 Thanks for voting!
             </p>
+        </div>
+    </div>
+
+    <div class="row" ng-if="vm.username === vm.poll.username">
+        <div class="col-md-2 col-md-offset-10">
+            <a href="" class="text-danger">Delete Poll</a>
         </div>
     </div>
 </div>

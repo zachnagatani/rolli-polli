@@ -5,10 +5,10 @@ const express = require('express'),
       path = require('path'),
       mongo = require('mongodb').MongoClient,
       mongoose = require('mongoose'),
-    //   dbURL = require('./config/dbInfo')(),
-      dbURL = process.env.MONGOLAB_URI,
-    //   secret = require('./config/secret'),
-      secret = process.env.SECRET_PHRASE,
+      dbURL = require('./config/dbInfo')(),
+    //   dbURL = process.env.MONGOLAB_URI,
+      secret = require('./config/secret'),
+    //   secret = process.env.SECRET_PHRASE,
       passport = require('passport'),
       initPassport = require('./auth/init'),
       bodyParser = require('body-parser'),
@@ -119,7 +119,7 @@ app.post('/update-poll/:id', (req, res) => {
     });
 });
 
-app.delete('/delete-poll/:id', /*preAuth,*/ (req, res) => {
+app.delete('/delete-poll/:id', preAuth, (req, res) => {
     Poll.findByIdAndRemove({
         _id: req.params.id
     }, err => {
