@@ -119,9 +119,16 @@
                     .attr('height', (d, i) => {
                         return yScale(d.votes);
                     });
-
                 svg.selectAll('text')
                     .data(data)
+                    .enter()
+                    .append('text')
+                    .attr('x', (d, i) => {
+                        return svgWidth/data.length * i + padding + labelOffset;
+                    })
+                    .attr('y', d => {
+                        return svgHeight + padding - labelOffset;
+                    })
                     .text(d => {
                         return d.name + ': ' + d.votes;
                     });

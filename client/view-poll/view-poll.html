@@ -40,7 +40,7 @@
             <div class="col-sm-6 col-sm-offset-3 text-center">
                 <div class="form-group">
                     <label for="new-option">Add New Option</label>
-                    <input type="text" name="new-option" id="new-option" ng-model="newOption" class="form-control" required>
+                    <input type="text" name="new-option" id="new-option" ng-model="vm.newOption" class="form-control" required>
                 </div>
             </div>
         </div>
@@ -60,8 +60,8 @@
         </div>
     </div>
 
-    <div class="row" ng-if="vm.username === vm.poll.username">
-        <div class="col-md-2 col-md-offset-10">
+    <div class="row row--delete" ng-if="vm.username === vm.poll.username">
+        <div class="col-sm-2 col-sm-offset-10 text-center">
             <a href="" class="text-danger" data-toggle="modal" data-target="#confirmation-dialogue">Delete Poll</a>
         </div>
     </div>
