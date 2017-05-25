@@ -35,12 +35,8 @@ main {
     border-radius: 4px;
 }
 
-.btn-success {
+.btn-success, .btn-primary {
     background: $accent;
-}
-
-.btn-primary {
-    background: $primary-color;
 }
 
 .btn-submit {
@@ -60,7 +56,7 @@ main {
 
 .signupMain {
     display: flex;
-    background: $accent;
+    background: $primary-color;
     color: $copy;
     padding: 50px;
     justify-content: center;
@@ -68,7 +64,7 @@ main {
 
 .pollsMain {
     padding-top: 60px;
-    background: $accent;
+    background: $primary-color;
     color: $text;
 }
 

@@ -16,6 +16,7 @@ const express = require('express'),
       Poll = require('./polls/model'),
       preAuth = require('./auth/preAuth');
       port = process.env.PORT || 8000;
+      console.log(secret);
 
 mongoose.Promise = global.Promise;
 mongoose.connect(dbURL);

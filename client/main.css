@@ -24,11 +24,8 @@ main {
 .btn {
   border-radius: 4px; }
 
-.btn-success {
+.btn-success, .btn-primary {
   background: #8BC34A; }
-
-.btn-primary {
-  background: #2196F3; }
 
 .btn-submit {
   width: 100px; }
@@ -44,14 +41,14 @@ main {
 
 .signupMain {
   display: flex;
-  background: #8BC34A;
+  background: #2196F3;
   color: #212121;
   padding: 50px;
   justify-content: center; }
 
 .pollsMain {
   padding-top: 60px;
-  background: #8BC34A;
+  background: #2196F3;
   color: #fff; }
 
 .hero {

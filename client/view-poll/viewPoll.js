@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('rolliPolli')
-        .controller('viewPollCtrl', ['$state', '$stateParams', '$timeout', 'api', 'auth', function($state, $stateParams, $timeout, api, auth) {
+        .controller('viewPollCtrl', ['$state', '$stateParams', '$timeout', '$window', 'api', 'auth', function($state, $stateParams, $timeout, $window, api, auth) {
             const self = this;
 
             self.vote = null;
@@ -52,6 +52,7 @@
                         .domain([0, d3.max(data, d => { return d.votes })])
                         .range([svgHeight, 0]),
                       yAxis = d3.axisLeft(yAxisScale),
+                      xAxis = d3.axisBottom(xScale),
                       svg = d3.select('.graph');
 
                 svg.selectAll('rect')
@@ -78,6 +79,7 @@
                     .data(data)
                     .enter()
                     .append('text')
+                    .style('text-anchor', 'start')
                     .attr('x', (d, i) => {
                         return svgWidth/data.length * i + padding + labelOffset;
                     })
@@ -90,7 +92,7 @@
 
                 svg.append('g')
                     .attr('transform', 'translate(50, 25)')
-                    .call(yAxis);
+                    .call(yAxis)
             };
 
             self.updateGraph = data => {
